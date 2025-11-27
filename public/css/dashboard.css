@@ -1,0 +1,62 @@
+ 
+      :root{
+        --primary:#3A0CA3;
+        --secondary:#4361EE;
+        --text:#1f2937;
+        --success:#10b981;
+        --danger:#ef4444;
+      }
+
+      html,body { height:100%; margin:0; font-family:"Poppins",sans-serif; }
+
+      /* background image (gambar harus bernama bg.png di folder yang sama) */
+      body {
+        background-image: url('bg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      /* layer overlay agar teks tetap terbaca */
+      .page-overlay {
+        background: rgba(255,255,255,0.); /* ubah opacity jika ingin lebih kontras */
+        min-height:100vh;
+      }
+
+      .sidebar-gradient {
+        background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+      }
+
+      .logout-gradient {
+        background: linear-gradient(135deg,#ff0000 0%,#c40000 100%);
+      }
+
+      .card-shadow {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      }
+
+      .menu-item {
+        transition: all 0.22s ease;
+      }
+      .menu-item:hover{
+        background: rgba(255,255,255,0.06);
+        transform: translateX(4px);
+      }
+      .menu-item.active{
+        background: rgba(255,255,255,0.12);
+        border-left: 4px solid rgba(255,255,255,0.9);
+      }
+
+      .stat-card { transition: transform .2s ease, box-shadow .2s ease; }
+      .stat-card:hover{ transform: translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,0.12); }
+
+      /* responsive tweaks */
+      @media (max-width: 900px) {
+        .sidebar-collapsed { display: none; }
+        .w-1-5-responsive { width: 100%; }
+      }
+
+      /* small utility to visually hide sections not active */
+      .page-section { display: none; }
+      .page-section.active { display: block; }
+    
