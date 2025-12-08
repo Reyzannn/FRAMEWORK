@@ -13,28 +13,16 @@
     <div class="p-6 bg-gray-50 border-b">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
         <!-- Jenis Laporan -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">JENIS LAPORAN</label>
-          <select id="jenis-laporan" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-          <option value="stok">Laporan stok keseluruhan</option>  
-          <option value="stok">Laporan rincian harga stok</option>
-            <option value="transaksi">Laporan stok minim/habis</option>
-            <option value="penjualan">Laporan keseluruhan</option>
-          </select>
-        </div>
-
-        <!-- Periode -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">PERIODE</label>
-          <select id="periode-laporan" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-            <option>Semua Waktu</option>
-            <option>Hari Ini</option>
-            <option>Minggu Ini</option>
-            <option>Bulan Ini</option>
-            <option>Tahun Ini</option>
-            <option>Custom Range</option>
-          </select>
-        </div>
+       <!-- Jenis Laporan -->
+<div class="md:col-span-2">
+  <label for="jenis-laporan" class="block text-sm font-medium text-gray-700 mb-2">Jenis Laporan</label>
+  <select id="jenis-laporan" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <option value="stok">Laporan stok keseluruhan</option>
+    <option value="stok_harga">Laporan rincian harga stok</option>
+    <option value="transaksi">Laporan stok minim/habis</option>
+    <option value="penjualan">Laporan keseluruhan</option>
+  </select>
+</div>
 
         <!-- Tombol Generate -->
         <div>
@@ -54,7 +42,7 @@
       
       <div id="hasil-laporan" class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-12 text-center">
         <div class="text-gray-500">
-          @include('Laporan.pdf')
+          @include('Laporan.Keseluruhan')
           <!-- <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>

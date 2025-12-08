@@ -1,6 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
+@section('title', 'Daftar Produk')
+
+@section('header')
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 id="header-title" class="text-3xl font-bold text-blue-600 mb-1">Daftar Produk</h2>
+                <p id="welcome-message" class="text-gray-500">Kelola semua produk dalam inventori</p>
+              </div>
+            </div>
+@endsection
+
 <section id="section-daftar" class="page-section active">
   <div class="bg-white rounded-2xl card-shadow overflow-hidden">
 
@@ -26,8 +37,12 @@
                 <div class="input-group px-4 py-2 border rounded-lg">
                     <select name="kategori" class="form-select" onchange="this.form.submit()">
                         <option value="">Semua Kategori</option>
-                        <option value="Elektronik" {{ request('kategori')=='Elektronik' ? 'selected' : '' }}>Elektronik</option>
-                        <option value="Alat Tulis" {{ request('kategori')=='Alat Tulis' ? 'selected' : '' }}>Alat Tulis</option>
+                        <option value="Elektronik" {{ request('kategori') == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
+                        <option value="Alat Tulis" {{ request('kategori') == 'Alat Tulis' ? 'selected' : '' }}>Alat Tulis</option>
+                        <option value="Alat Mandi" {{ request('kategori') == 'Alat Mandi' ? 'selected' : '' }}>Alat Mandi</option>
+                        <option value="Jajan" {{ request('kategori') == 'Jajan' ? 'selected' : '' }}>Jajan</option>
+                        <option value="Kecantikan" {{ request('kategori') == 'Kecantikan' ? 'selected' : '' }}>Kecantikan</option>
+                        <option value="Alat Dapur" {{ request('kategori') == 'Alat Dapur' ? 'selected' : '' }}>Alat Dapur</option>
                     </select>
                 </div>
             </form>

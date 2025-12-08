@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('kode')->unique();
-            $table->enum('kategori', ['Elektronik', 'Alat Tulis']);
+            $table->enum('kategori', ['Elektronik', 'Alat Tulis', 'Alat Mandi', 'Jajan', 'Alas Kaki', 'Kecantikan', 'Alat Dapur']);
             $table->enum('satuan', ['pcs', 'box'])->default('pcs');
             $table->integer('stok');
             $table->integer('stok_minim');

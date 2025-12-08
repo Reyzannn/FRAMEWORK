@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
+@section('title', 'Tambah Produk')
+
+@section('header')
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 id="header-title" class="text-3xl font-bold text-blue-600 mb-1">Tambahkan Produk</h2>
+                <p id="welcome-message" class="text-gray-500">Pastikan teliti!</p>
+              </div>
+            </div>
+@endsection
+
    <section id="section-tambah" class="page-section active">
     <form action="{{ route ('produk.store') }}" method="post">
     @csrf
@@ -21,6 +33,11 @@
                       <option value="">Pilih Kategori</option>
                       <option value="Elektronik">Elektronik</option>
                       <option value="Alat Tulis">Alat Tulis</option>
+                      <option value="Alat Mandi">Alat Mandi</option>
+                      <option value="Jajan">Jajan</option>
+                      <option value="Alas Kaki">Alas Kaki</option>
+                      <option value="Kecantikan">Kecantikan</option>
+                      <option value="Alat Dapur">Alat Dapur</option>
                     </select>
                   </div>
                   <div>

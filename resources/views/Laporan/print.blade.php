@@ -14,7 +14,7 @@
   </head>
   <body class="h-full text-gray-900">
           <main class="flex-1 p-8 overflow-auto">
-            @include('Laporan.pdf')
+            @include('Laporan.Keseluruhan')
 </main>
 <script src="{{ asset('js/scriptlgn.js') }}"></script>
       </body>

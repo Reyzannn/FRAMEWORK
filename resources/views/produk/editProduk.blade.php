@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
+@section('title', 'Edit Produk')
+
+@section('header')
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 id="header-title" class="text-3xl font-bold text-blue-600 mb-1">Edit Produk</h2>
+                <p id="welcome-message" class="text-gray-500">Jangan terjadi kesalahan lagi!</p>
+              </div>
+            </div>
+@endsection
+
 <section id="section-edit" class="page-section active">
     <form action="{{ route('produk.update', $product->id) }}" method="POST">
         @csrf
