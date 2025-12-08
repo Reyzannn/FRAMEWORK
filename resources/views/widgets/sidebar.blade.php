@@ -23,6 +23,7 @@
                   Dashboard
                 </a>
               </li>
+             @if($authUser->role != 'owner')
               <li>
                 <a href="{{ route('produk.create') }}" data-page="tambah" class="menu-item flex items-center px-4 py-3 rounded-lg">
                   <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -31,6 +32,7 @@
                   Tambahkan Produk
                 </a>
               </li>
+              @endif
               <li>
                 <a href="{{ route('produk.index') }}" data-page="daftar" class="menu-item flex items-center px-4 py-3 rounded-lg">
                   <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -39,6 +41,7 @@
                   Daftar Produk
                 </a>
               </li>
+              @if($authUser->role=='admin')
               <li>
                 <a href="{{ route('laporan.index') }}" data-page="laporan" class="menu-item flex items-center px-4 py-3 rounded-lg">
                   <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -47,6 +50,7 @@
                   Laporan
                 </a>
               </li>
+              @endif
             </ul>
           </nav>
 

@@ -13,7 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [dashboard::class, 'index'])->name('dashboard.index');
     Route::get('/laporan', [Laporan::class, 'index'])->name('laporan.index');
     Route::get('/cetak-stok-pdf', [PdfController::class, 'cetakStok'])->name('cetak.stok.pdf');
-    Route::get('/laporan/generate', [PdfController::class, 'generate'])->name('laporan.generate');
+    Route::post('/laporan/proses', [PdfController::class, 'proses'])->name('laporan.proses');
 
 
 
