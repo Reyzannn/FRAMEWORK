@@ -90,7 +90,7 @@
                         <p class="text-sm text-gray-700">
                             Total produk stok rendah: 
                             <span class="font-bold text-red-700 text-lg">
-                                {{ $authUser->username}}
+                                {{ $stokminim }}
                             </span> 
                             Product
                         </p>

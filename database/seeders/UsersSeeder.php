@@ -32,5 +32,11 @@ class UsersSeeder extends Seeder
             'password' => Hash::make('owner123'),
             'role'     => 'owner',
         ]);
+
+        User::create([
+            'username' => 'Manager',
+            'password' => Hash::make('manager123'),
+            'role'     => 'manager',
+        ]);
     }
 }
