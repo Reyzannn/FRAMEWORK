@@ -3,35 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login - Simbadag</title>
-   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+  <title>Login - Inventa</title>
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="gradient-bg">
   <div class="page">
     <div class="container">
       <!-- Left: logo & branding -->
-      <section class="logo-section" aria-label="Branding">
-        <svg class="logo-icon" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
-          <path d="M20 60 L60 20 L100 60 L100 100 L20 100 Z"
-                fill="currentColor" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
-          <g fill="white">
-            <rect x="45" y="40" width="4" height="40" />
-            <polygon points="52,40 52,44 65,44 52,58 52,62 58,62 70,48 70,44 58,44 58,40" />
-            <polygon points="58,62 52,62 52,66 65,66 52,80 58,80 75,66 75,62" />
-          </g>
-        </svg>
+        <div class="logo-section">
+  <svg class="logo-icon" width="240" height="80" viewBox="0 0 240 80" aria-hidden="true">
+    <text x="0" y="55"
+      font-size="40"
+      font-weight="700"
+      letter-spacing="2"
+      fill="currentColor"
+      font-family="Segoe UI, Inter, system-ui, sans-serif">
+      INVENTA
+    </text>
+  </svg>
 
-        <h1 class="brand-title">simbadag</h1>
-        <p class="brand-sub">PT. RJB</p>
-      </section>
-
+  <div class="brand-sub" style="
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  opacity: 0.75;
+  margin-top: -6px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+">
+  INVENTARIS TERPADU - Aplikasi Pengelolaan Inventaris Barang
+</div>
+</div>
       <!-- Right: login form -->
       <section class="form-section" aria-label="Login form">
         <div class="login-card" role="region" aria-labelledby="login-heading">
           <h2 id="login-heading" class="form-title">Masuk ke Akun</h2>
 
           <form class="form-space" onsubmit="handleLogin(event)" action="{{ route('login') }}" novalidate method="POST">
-          @csrf  
+          @csrf
           <div class="form-group">
               <label for="username">Username</label>
               <div class="input-wrapper">

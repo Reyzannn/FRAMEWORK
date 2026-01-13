@@ -7,7 +7,7 @@
 @section('header')
             <div class="flex items-center justify-between">
               <div>
-                <h2 id="header-title" class="text-3xl font-bold text-blue-600 mb-1">Edit Produk</h2>
+                <h2 id="header-title" class="text-3xl font-bold text-lime-800 mb-1">Edit Produk</h2>
                 <p id="welcome-message" class="text-gray-500">Jangan terjadi kesalahan lagi!</p>
               </div>
             </div>
@@ -105,7 +105,7 @@
             </div>
 
             <div class="mt-6 flex space-x-3">
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">
+                <button type="submit" class="px-4 py-2 bg-lime-800 text-white rounded-lg font-semibold hover:bg-lime-900">
                     Update Produk
                 </button>
                 <a href="{{ route('produk.index') }}" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">

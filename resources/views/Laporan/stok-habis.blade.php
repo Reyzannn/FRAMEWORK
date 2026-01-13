@@ -17,7 +17,7 @@
     }
     .header h1 {
       margin: 0;
-      color: #4361EE;
+      color: #445a41;
       font-size: 28px;
     }
     .header h2 {
@@ -45,7 +45,7 @@
       margin-top: 10px;
     }
     th {
-      background: #4361EE;
+      background: #445a41;
       color: #fff;
       padding: 12px 8px;
       font-size: 13px;

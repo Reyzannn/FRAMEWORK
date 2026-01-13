@@ -1,16 +1,7 @@
 <aside class="w-1/5 sidebar-gradient text-white flex flex-col min-h-screen p-0">
           <div class="p-6 text-center border-b border-white border-opacity-20">
-            <div class="mb-4 flex justify-center">
-              <!-- simple house icon -->
-              <svg width="60" height="60" viewBox="0 0 60 60" class="text-white">
-                <path d="M10 30 L30 10 L50 30 L50 50 L10 50 Z" fill="currentColor" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-                <rect x="25" y="35" width="10" height="15" fill="rgba(255,255,255,0.18)"/>
-                <rect x="20" y="25" width="6" height="6" fill="rgba(255,255,255,0.18)"/>
-                <rect x="34" y="25" width="6" height="6" fill="rgba(255,255,255,0.18)"/>
-              </svg>
-            </div>
-            <h1 id="company-name" class="text-xl font-bold mb-1">simbadag</h1>
-            <p id="company-subtitle" class="text-xs opacity-80">PT. RIZKY JAYA BADAI</p>
+            <h1 id="company-namre" class="text-xl font-bold mb-1">Inventa</h1>
+            <p id="company-subtitle" class="text-xs opacity-80">PT Inventa Teknologi Nusantara  </p>
           </div>
 
           <nav class="flex-1 py-6">
@@ -69,7 +60,7 @@
             <a href="{{ route('logout') }}">
             <button id="logout-btn" class="logout-gradient w-full py-3 px-4 rounded-xl font-semibold text-white transition-all duration-200 hover:shadow-lg">
               Log Out
-            </button> 
+            </button>
             </a>
           </div>
         </aside>

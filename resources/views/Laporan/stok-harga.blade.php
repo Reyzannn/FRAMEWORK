@@ -8,7 +8,7 @@
 
     /* Header */
     .header { text-align: center; margin-bottom: 20px; }
-    .header h1 { margin: 0; color: #4361EE; font-size: 28px; letter-spacing: 1px; }
+    .header h1 { margin: 0; color: #445a41; font-size: 28px; letter-spacing: 1px; }
     .header h2 { margin: 5px 0; font-size: 20px; color: #222; }
 
     /* Summary Box */
@@ -17,14 +17,14 @@
 
     /* Table Style */
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th { background: #4361EE; color: #fff; padding: 12px 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    th { background: #445a41; color: #fff; padding: 12px 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
     td { padding: 10px 8px; font-size: 12px; border-bottom: 1px solid #eee; }
     tr:nth-child(even) { background: #f9f9ff; }
     .text-center { text-align: center; }
     .text-right { text-align: right; }
 
     /* Total */
-    .total { margin-top: 20px; font-size: 18px; font-weight: bold; color: #4361EE; margin-bottom: 80px; } /* beri margin bawah agar footer tidak menimpa */
+    .total { margin-top: 20px; font-size: 18px; font-weight: bold; color: #445a41; margin-bottom: 80px; } /* beri margin bawah agar footer tidak menimpa */
 
     /* Footer */
     .footer { font-size: 14px; margin-top: 50px; }

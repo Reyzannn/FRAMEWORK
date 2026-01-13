@@ -14,7 +14,7 @@
 <section id="section-daftar" class="page-section active">
   <div class="bg-white rounded-2xl card-shadow overflow-hidden">
 
-    <div class="bg-gradient-to-r from-[#4361EE] to-[#3A0CA3] px-6 py-4">
+    <div class="bg-gradient-to-r from-[#1C2B1A] to-[#445a41] px-6 py-4">
       <h3 class="text-xl font-semibold text-white">
       <div class="flex items-center justify-between">
       Daftar User
@@ -27,7 +27,7 @@
       <p class="text-white text-sm opacity-90">Kelola akun pengguna</p>
     </div>
 
-    
+
 
 
     <form action="{{ route('users.index') }}" method="get">

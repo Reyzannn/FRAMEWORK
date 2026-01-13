@@ -6,10 +6,10 @@
   <style>
     body { font-family: Arial, sans-serif; color: #333; }
     .header { text-align: center; margin-bottom: 30px; }
-    .header h1 { margin: 0; color: #4361EE; }
+    .header h1 { margin: 0; color: #445a41; }
     .summary { background: #f8f9ff; padding: 5px; border-radius: 12px; margin-bottom: 25px; }
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th { background: #4361EE; color: white; padding: 12px 8px; font-size: 13px; }
+    th { background: #445a41; color: white; padding: 12px 8px; font-size: 13px; }
     td { padding: 10px 8px; font-size: 12px; border-bottom: 1px solid #eee; }
     tr:nth-child(even) { background: #f9f9ff; }
     .text-right { text-align: right; }
@@ -17,7 +17,7 @@
     .badge-red { background: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
     .badge-green { background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
     .footer { margin-top: 50px; display: flex; justify-content: space-between; }
-    .total { font-size: 18px; font-weight: bold; color: #4361EE; margin-top: 20px; }
+    .total { font-size: 18px; font-weight: bold; color: #445a41; margin-top: 20px; }
   </style>
 </head>
 <body>

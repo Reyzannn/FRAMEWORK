@@ -7,7 +7,7 @@
 @section('header')
             <div class="flex items-center justify-between">
               <div>
-                <h2 id="header-title" class="text-3xl font-bold text-blue-600 mb-1">Laporan</h2>
+                <h2 id="header-title" class="text-3xl font-bold text-lime-800 mb-1">Laporan</h2>
                 <p id="welcome-message" class="text-gray-500">Lihat laporan penjualan dan inventori</p>
               </div>
             </div>
@@ -17,7 +17,7 @@
 <section id="section-laporan" class="page-section active">
   <div class="bg-white rounded-2xl card-shadow overflow-hidden">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-[#4361EE] to-[#3A0CA3] px-6 py-5">
+    <div class="bg-gradient-to-r from-[#1C2B1A] to-[#445a41] px-6 py-5">
       <h3 class="text-2xl font-bold text-white">Laporan</h3>
       <p class="text-white text-sm opacity-90 mt-1">Laporan Stok dan Transaksi</p>
     </div>
@@ -55,12 +55,12 @@
           <!-- Tombol Preview (dipindah ke atas) -->
 <div class="md:col-span-4">
   <button type="submit" name="aksi" value="previwe"
-          class="w-full bg-gradient-to-r from-[#4361EE] to-[#3A0CA3] text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
+          class="w-full bg-gradient-to-r from-[#1C2B1A] to-[#445a41] text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
     </svg>
-    
+
     Preview Laporan
   </button>
 </div>
@@ -68,7 +68,7 @@
 <!-- Tombol Preview (dipindah ke bawah) -->
 <div class="md:col-span-3">
   <button type="submit" name="aksi" value="download"
-          class="w-full bg-gradient-to-r from-[#4361EE] to-[#3A0CA3] text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
+          class="w-full bg-gradient-to-r from-[#1C2B1A] to-[#445a41] text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
     </svg>

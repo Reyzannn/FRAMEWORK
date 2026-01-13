@@ -7,7 +7,7 @@
 @section('header')
             <div class="flex items-center justify-between">
               <div>
-                <h2 id="header-title" class="text-3xl font-bold text-blue-600 mb-1">Tambahkan Produk</h2>
+                <h2 id="header-title" class="text-3xl font-bold text-lime-800 mb-1">Tambahkan Produk</h2>
                 <p id="welcome-message" class="text-gray-500">Pastikan teliti!</p>
               </div>
             </div>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="mt-6 flex space-x-3">
-                  <button id="simpan-produk" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">Simpan Produk</button>
+                  <button id="simpan-produk" class="px-4 py-2 bg-lime-800 text-white rounded-lg font-semibold hover:bg-lime-900">Simpan Produk</button>
                   <button id="reset-form" class="px-4 py-2 border rounded-lg">Reset Form</button>
                 </div>
               </div>

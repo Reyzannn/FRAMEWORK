@@ -8,7 +8,7 @@
 
     /* Header */
     .header { text-align: center; margin-bottom: 20px; }
-    .header h1 { margin: 0; color: #4361EE; font-size: 28px; letter-spacing: 1px; }
+    .header h1 { margin: 0; color: #445a41; font-size: 28px; letter-spacing: 1px; }
     .header h2 { margin: 5px 0; font-size: 20px; color: #222; }
 
     /* Summary Box */
@@ -25,7 +25,7 @@
     /* Table Style */
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th {
-      background: #4361EE;
+      background: #445a41;
       color: #fff;
       padding: 12px 8px;
       font-size: 13px;
