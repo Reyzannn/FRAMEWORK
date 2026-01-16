@@ -6,8 +6,8 @@
 @section('header')
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-3xl font-bold text-lime-800 mb-1">Daftar Produk</h2>
-            <p class="text-gray-500">Kelola semua produk dalam inventori</p>
+            <h2 class="text-3xl font-bold text-lime-800 mb-1">Daftar Barang</h2>
+            <p class="text-gray-500">Kelola semua barang dalam inventori</p>
         </div>
     </div>
 @endsection
@@ -16,8 +16,8 @@
     <div class="bg-white rounded-2xl card-shadow overflow-hidden">
 
         <div class="bg-gradient-to-r from-[#1C2B1A] to-[#445a41] px-6 py-4">
-            <h3 class="text-xl font-semibold text-white">Daftar Produk</h3>
-            <p class="text-white text-sm opacity-90">Kelola semua produk dalam inventori</p>
+            <h3 class="text-xl font-semibold text-white">Daftar Barang</h3>
+            <p class="text-white text-sm opacity-90">Kelola semua barang dalam inventori</p>
         </div>
 
         <!-- Search & Filter -->
@@ -55,7 +55,6 @@
                         <th class="px-6 py-4 text-left">PRODUK</th>
                         <th class="px-6 py-4 text-left">KATEGORI</th>
                         <th class="px-6 py-4 text-center">STOK</th>
-                        <th class="px-6 py-4 text-right">HARGA</th>
                         <th class="px-6 py-4 text-center">STATUS</th>
 
                         <!-- Hanya tampilkan header AKSI kalau BUKAN owner -->
@@ -79,18 +78,11 @@
                             <td class="px-6 py-4 text-center">
                                 {{ $product->stok }} {{ $product->satuan }}
                             </td>
-
-                            <td class="px-6 py-4 text-right">
-                                Rp {{ number_format($product->harga, 0, ',', '.') }}
-                            </td>
-
-                            <td class="px-6 py-4 text-center">
-                                @if($product->stok <= $product->stok_minim)
-                                    <span class="px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-semibold">Rendah</span>
-                                @else
-                                    <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-semibold">Cukup</span>
-                                @endif
-                            </td>
+<td class="text-center align-middle">
+    <span class="badge-with-dot {{ $product->status == 'Bagus' ? 'bagus' : 'kurang-bagus' }}">
+        {{ $product->status }}
+    </span>
+</td>
 
                             <!-- Kolom Aksi hanya muncul kalau bukan owner -->
                             @if(auth()->user()->role !== 'owner')

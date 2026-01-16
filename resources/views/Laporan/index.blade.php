@@ -28,29 +28,23 @@
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-end">
 
-          <!-- Jenis Laporan -->
-          <div class="md:col-span-5">
-            <label for="jenis_laporan" class="block text-sm font-medium text-gray-700 mb-2">
-              Jenis Laporan
-            </label>
-          <select name="jenis_laporan" id="jenis_laporan"
+<!-- Jenis Laporan -->
+    <div class="md:col-span-5">
+    <label for="jenis_laporan" class="block text-sm font-medium text-gray-700 mb-2">
+        Jenis Laporan
+    </label>
+    <select name="jenis_laporan" id="jenis_laporan"
         class="w-full px-5 py-4 text-gray-700 text-base border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         required>
-    <option value="">-- Pilih Jenis Laporan --</option>
-    <option value="stok" {{ old('jenis_laporan') == 'stok' ? 'selected' : '' }}>
-        Laporan Stok Keseluruhan
-    </option>
-    <option value="stok_harga" {{ old('jenis_laporan') == 'stok_harga' ? 'selected' : '' }}>
-        Laporan Rincian Harga Stok
-    </option>
-    <option value="stok_habis" {{ old('jenis_laporan') == 'stok_habis' ? 'selected' : '' }}>
-        Laporan Stok Minim/Habis
-    </option>
-    <option value="penjualan" {{ old('jenis_laporan') == 'penjualan' ? 'selected' : '' }}>
-        Laporan Penjualan Keseluruhan
-    </option>
-</select>
-          </div>
+        <option value="">-- Pilih Jenis Laporan --</option>
+        <option value="stok" {{ old('jenis_laporan') == 'stok' ? 'selected' : '' }}>
+            Laporan Stok Keseluruhan
+        </option>
+        <option value="penjualan" {{ old('jenis_laporan') == 'penjualan' ? 'selected' : '' }}>
+            Laporan Peminjaman
+        </option>
+    </select>
+    </div>
 
           <!-- Tombol Preview (dipindah ke atas) -->
 <div class="md:col-span-4">

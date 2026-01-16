@@ -6,6 +6,7 @@ use App\Http\Controllers\Users;
 use App\Http\Controllers\Produk;
 use App\Http\Controllers\Laporan;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\StockController;
 
 Route::get('/logout', [Users::class, 'logout'])->name('logout')->middleware('auth');
 
@@ -39,4 +40,18 @@ Route::middleware('auth')->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [Users::class, 'index'])->name('login.index');
     Route::post('/login', [Users::class, 'login'])->name('login');
+});
+
+Route::prefix('stock')->name('stock.')->group(function () {
+    // Barang Masuk
+    Route::get('masuk', [StockController::class, 'masuk'])->name('masuk');
+    Route::get('masuk/tambah', [StockController::class, 'createMasuk'])->name('masuk.create');
+    Route::post('masuk', [StockController::class, 'storeMasuk'])->name('masuk.store');
+
+    // Barang Keluar
+    Route::get('keluar', [StockController::class, 'keluar'])->name('keluar');
+    Route::get('keluar/tambah', [StockController::class, 'createKeluar'])->name('keluar.create');
+    Route::post('keluar', [StockController::class, 'storeKeluar'])->name('keluar.store');
+
+      Route::post('restore/{id}', [StockController::class, 'restore'])->name('restore');
 });

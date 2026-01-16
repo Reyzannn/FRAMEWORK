@@ -9,11 +9,13 @@ class dashboard extends Controller
 {
     public function index()
     {
-        $produk = Produk_Model::count(); 
-        $stokminim = Produk_Model::whereColumn('stok', '<=', 'stok_minim')->count();
-        $totalNilaiStok = Produk_Model::get()->sum(fn($p) => $p->harga * $p->stok);
-        $produk_minim = Produk_Model::whereColumn('stok', '<=', 'stok_minim')->get();
+        $produk = Produk_Model::count();
+        // Barang dengan status "kondisi baik"
+        $kondisi_bagus = Produk_Model::where('status', 'Bagus')->count();
 
-        return view('dashboard.index', compact('produk', 'stokminim', 'totalNilaiStok', 'produk_minim'));
+        // Barang dengan status "kondisi kurang baik"
+        $kondisi_kurang_bagus = Produk_Model::where('status', 'Kurang Bagus')->count();
+
+        return view('dashboard.index', compact('produk', 'kondisi_bagus', 'kondisi_kurang_bagus'));
     }
 }
