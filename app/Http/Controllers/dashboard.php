@@ -11,10 +11,10 @@ class dashboard extends Controller
     {
         $produk = Produk_Model::count();
         // Barang dengan status "kondisi baik"
-        $kondisi_bagus = Produk_Model::where('status', 'Bagus')->count();
+        $kondisi_bagus = Produk_Model::where('stok_bagus', '>', 0)->count();
 
         // Barang dengan status "kondisi kurang baik"
-        $kondisi_kurang_bagus = Produk_Model::where('status', 'Kurang Bagus')->count();
+        $kondisi_kurang_bagus = Produk_Model::where('stok_kurang_bagus' , '>', 0)->count();
 
         return view('dashboard.index', compact('produk', 'kondisi_bagus', 'kondisi_kurang_bagus'));
     }

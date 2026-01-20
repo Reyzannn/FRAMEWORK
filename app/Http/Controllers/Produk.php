@@ -33,62 +33,84 @@ class Produk extends Controller
         return view('produk.index', compact('products'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'kode' => 'required|regex:/^\S+$/',
-            'kategori' => 'required',
-            'stok' => 'required|numeric|min:0',
-            'status' => 'required|in:Bagus,Kurang Bagus',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'nama' => 'required|max:255',
+        'kode' => 'required|unique:produk,kode|regex:/^\S+$/',
+        'kategori' => 'required|in:Elektronik,Alat Tulis,Alat Mandi,Jajan,Alas Kaki,Kecantikan,Alat Dapur',
+        'stok' => 'required|integer|min:0',
+        'stok_bagus' => 'required|integer|min:0',
+        'stok_kurang_bagus' => 'required|integer|min:0',
+    ]);
 
-        try {
-            Produk_Model::create([
-                'nama' => $request->nama,
-                'kode' => $request->kode,
-                'kategori' => $request->kategori,
-                'stok' => $request->stok,
-                'status' => $request->status,
-            ]);
+    // Validasi manual: total detail harus sama dengan total stok
+    $totalDetail = $request->stok_bagus + $request->stok_kurang_bagus;
 
-            return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()])->withInput();
-        }
+    if ($totalDetail != $request->stok) {
+        return redirect()->back()
+            ->withErrors(['stok' => "Total detail kondisi ($totalDetail) tidak sama dengan Total Stok ({$request->stok})"])
+            ->withInput();
     }
 
- public function edit(string $id)
+    try {
+        $produk = Produk_Model::create([
+            'nama' => $request->nama,
+            'kode' => $request->kode,
+            'kategori' => $request->kategori,
+            'stok' => $request->stok,
+            'stok_bagus' => $request->stok_bagus,
+            'stok_kurang_bagus' => $request->stok_kurang_bagus,
+        ]);
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()])->withInput();
+    }
+}
+
+public function edit(string $id)
     {
         $product = Produk_Model::findOrFail($id);
         return view('produk.editProduk', compact('product'));
     }
 
     public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'kategori' => 'required',
-            'stok' => 'required|numeric|min:0',
-            'status' => 'required|in:Bagus,Kurang Bagus',
-            'alasan_pengurangan' => 'nullable|required_if:stok_berkurang,true|string', // Validasi baru
-            'keterangan' => 'nullable|string',
-            'tanggal_keluar' => 'nullable|date'
-        ]);
+{
+    $request->validate([
+        'nama' => 'required|max:255',
+        'kategori' => 'required|in:Elektronik,Alat Tulis,Alat Mandi,Jajan,Alas Kaki,Kecantikan,Alat Dapur',
+        'stok' => 'required|integer|min:0',
+        'stok_bagus' => 'required|integer|min:0',
+        'stok_kurang_bagus' => 'required|integer|min:0',
+        'alasan_pengurangan' => 'nullable|required_if:stok_berkurang,true|string',
+        'keterangan' => 'nullable|string',
+        'tanggal_keluar' => 'nullable|date'
+    ]);
 
-         try {
+    // Validasi manual: total detail harus sama dengan total stok
+    $totalDetail = $request->stok_bagus + $request->stok_kurang_bagus ;
+
+    if ($totalDetail != $request->stok) {
+        return redirect()->back()
+            ->withErrors(['stok' => "Total detail kondisi ($totalDetail) tidak sama dengan Total Stok ({$request->stok})"])
+            ->withInput();
+    }
+
+    try {
         $product = Produk_Model::findOrFail($id);
         $stokLama = $product->stok;
         $stokBaru = $request->stok;
 
-            // Simpan data dasar
-            $product->nama = $request->nama;
-            $product->kategori = $request->kategori;
-            $product->status = $request->status;
-            $product->stok = $stokBaru;
+        // Simpan data dasar
+        $product->nama = $request->nama;
+        $product->kategori = $request->kategori;
+        $product->stok = $stokBaru;
+        $product->stok_bagus = $request->stok_bagus;
+        $product->stok_kurang_bagus = $request->stok_kurang_bagus;
 
-            // Cek apakah stok berkurang
-            if ($stokBaru < $stokLama) {
+        // Cek apakah stok berkurang
+        if ($stokBaru < $stokLama) {
             $jumlahPengurangan = $stokLama - $stokBaru;
 
             // Validasi alasan pengurangan
@@ -98,60 +120,32 @@ class Produk extends Controller
                     ->withInput();
             }
 
-            // Siapkan data untuk barang_keluar
-            $barangKeluarData = [
+            // Catat di barang keluar
+            BarangKeluar::create([
                 'produk_id' => $product->id,
                 'jumlah' => $jumlahPengurangan,
                 'alasan' => $request->alasan_pengurangan,
                 'keterangan' => $request->keterangan,
-                'tanggal_keluar' => $request->tanggal_keluar ?? now(),
-                'dilakukan_oleh' => 'System' // Default value
-            ];
+                'tanggal_keluar' => $request->tanggal_keluar ?? date('Y-m-d'),
+                'dilakukan_oleh' => auth()->check()
+                    ? (auth()->user()->nama ?? auth()->user()->name ?? auth()->user()->email ?? 'Admin')
+                    : 'System'
+            ]);
 
-            // Coba dapatkan info user
-            if (auth()->check()) {
-                $user = auth()->user();
-
-                                // Cek berdasarkan model User Anda
-                if (isset($user->name)) {
-                    $barangKeluarData['dilakukan_oleh'] = $user->name;
-                } elseif (isset($user->username)) {
-                    $barangKeluarData['dilakukan_oleh'] = $user->username;
-                } elseif (isset($user->email)) {
-                    $barangKeluarData['dilakukan_oleh'] = $user->email;
-                } else {
-                    $barangKeluarData['dilakukan_oleh'] = 'User#' . $user->id;
-                }
+            // Update status otomatis jika alasan 'rusak'
+            if ($request->alasan_pengurangan == 'rusak') {
+                // Kurangi dari stok_bagus, tambah ke stok_kurang_bagus
+                // Logika ini bisa disesuaikan dengan kebutuhan
             }
-
-                // Catat di barang keluar
-// GANTI SAJA bagian create BarangKeluar dengan ini:
-BarangKeluar::create([
-    'produk_id' => $product->id,
-    'jumlah' => $jumlahPengurangan,
-    'alasan' => $request->alasan_pengurangan,
-    'keterangan' => $request->keterangan,
-    'tanggal_keluar' => $request->tanggal_keluar ?? date('Y-m-d'),
-    'dilakukan_oleh' => auth()->check()
-        ? (auth()->user()->nama ?? auth()->user()->name ?? auth()->user()->email ?? 'Admin')
-        : 'System'
-]);
-
-                // Update status otomatis jika alasan 'rusak'
-                if ($request->alasan_pengurangan == 'rusak') {
-                    $product->status = 'Kurang Bagus';
-                }
-            }
-
-            $product->save();
-
-            return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
-        } catch (\Exception $e) {
-
-
-            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()])->withInput();
         }
+
+        $product->save();
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()])->withInput();
     }
+}
 
     public function destroy(string $id)
     {

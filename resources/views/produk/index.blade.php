@@ -78,11 +78,9 @@
                             <td class="px-6 py-4 text-center">
                                 {{ $product->stok }} {{ $product->satuan }}
                             </td>
-<td class="text-center align-middle">
-    <span class="badge-with-dot {{ $product->status == 'Bagus' ? 'bagus' : 'kurang-bagus' }}">
-        {{ $product->status }}
-    </span>
-</td>
+                            <td class="px-6 py-4">
+                                {!! $product->status_display !!}
+                            </td>
 
                             <!-- Kolom Aksi hanya muncul kalau bukan owner -->
                             @if(auth()->user()->role !== 'owner')

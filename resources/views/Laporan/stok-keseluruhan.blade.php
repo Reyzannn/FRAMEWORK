@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <title>Laporan Stok Keseluruhan - Sistem Inventory</title>
   <style>
-    body { font-family: Arial, sans-serif; color: #333; font-size: 12px; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      font-size: 12px;
+      margin: 0;
+      padding: 20px;
+    }
 
     /* Header */
     .header {
@@ -25,7 +31,11 @@
       color: #445a41;
       font-weight: 600;
     }
-    .header p { margin: 3px 0; color: #666; }
+    .header p {
+      margin: 3px 0;
+      color: #666;
+      font-size: 11px;
+    }
 
     /* Summary Box */
     .summary {
@@ -35,81 +45,41 @@
       border-left: 4px solid #1C2B1A;
       margin-bottom: 20px;
     }
-    .summary table { width: 100%; }
-    .summary td { padding: 4px 0; }
-    .summary strong { color: #1C2B1A; }
-
-    /* Status Badges */
-    .status-badge {
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: bold;
-      display: inline-block;
-      min-width: 70px;
-      text-align: center;
+    .summary table {
+      width: 100%;
     }
-    .status-bagus {
-      background: #dcfce7;
-      color: #166534;
-      border: 1px solid #86efac;
+    .summary td {
+      padding: 8px 0;
     }
-    .status-rusak {
-      background: #fee2e2;
-      color: #991b1b;
-      border: 1px solid #fca5a5;
+    .summary strong {
+      color: #1C2B1A;
     }
-    .status-perbaikan {
-      background: #fef9c3;
-      color: #854d0e;
-      border: 1px solid #fde047;
-    }
-    .status-habis {
-      background: #f3f4f6;
-      color: #6b7280;
-      border: 1px solid #d1d5db;
-    }
-
-    /* Stok Indicator */
-    .stok-indicator {
-      font-size: 9px;
-      padding: 2px 6px;
-      border-radius: 8px;
-      margin-top: 3px;
-      display: inline-block;
-    }
-    .stok-habis { background: #fef2f2; color: #dc2626; }
-    .stok-minim { background: #fffbeb; color: #d97706; }
-    .stok-cukup { background: #f0fdf4; color: #16a34a; }
 
     /* Table Style */
     table.main-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      border-spacing: 0;
+      margin-top: 15px;
+      table-layout: fixed;
     }
     .main-table th {
       background: #1C2B1A;
       color: white;
-      padding: 10px 8px;
+      padding: 12px 8px;
       font-size: 11px;
       font-weight: bold;
       text-align: left;
-      border: 1px solid #ddd;
+      border: 1px solid #2d3e2c;
     }
     .main-table td {
-      padding: 9px 8px;
+      padding: 10px 8px;
       border: 1px solid #ddd;
-      vertical-align: middle;
+      vertical-align: top;
+      word-wrap: break-word;
     }
-    .main-table tr:nth-child(even) { background: #f9f9f9; }
-
-    /* Highlight untuk stok rendah */
-    .stok-rendah-row {
-      background: #fff7ed !important;
-    }
-    .stok-habis-row {
-      background: #fef2f2 !important;
+    .main-table tr:nth-child(even) {
+      background: #f9f9f9;
     }
 
     /* Kode barang styling */
@@ -117,18 +87,23 @@
       font-family: 'Courier New', monospace;
       font-weight: bold;
       color: #1C2B1A;
-      background: #f0fdf4;
-      padding: 2px 6px;
-      border-radius: 4px;
-      border: 1px solid #bbf7d0;
+    }
+
+    /* Status Detail */
+    .status-detail {
+      font-size: 10px;
+      line-height: 1.4;
+    }
+    .status-bagus {
+      color: #166534;
+    }
+    .status-kurang {
+      color: #854d0e;
     }
 
     /* Footer / Signature */
     .footer {
       margin-top: 50px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
     }
     .signature-box {
       width: 45%;
@@ -137,14 +112,30 @@
     }
     .signature-line {
       width: 70%;
-      margin: 40px auto 5px;
+      height: 1px;
+      margin: 60px auto 10px;
       border-top: 1px solid #333;
     }
 
-    /* Page break untuk print */
+    /* Utility classes */
+    .text-center { text-align: center; }
+
+    /* Print optimization */
     @media print {
-      .no-print { display: none; }
-      .page-break { page-break-before: always; }
+      body {
+        margin: 0.5in;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .main-table {
+        border: 1px solid #000 !important;
+        font-size: 10px;
+      }
+      .main-table th {
+        background: #1C2B1A !important;
+        -webkit-print-color-adjust: exact;
+      }
     }
   </style>
 </head>
@@ -161,11 +152,11 @@
   <div class="summary">
     <table>
       <tr>
-        <td width="25%"><strong>Total Jenis Barang</strong></td>
-        <td width="25%">: {{ number_format($total_produk, 0, ',', '.') }} jenis</td>
+        <td width="50%"><strong>Total Jenis Barang</strong></td>
+        <td width="50%"><strong>Total Unit Barang</strong></td>
       </tr>
       <tr>
-        <td><strong>Total Unit Barang</strong></td>
+        <td>: {{ number_format($total_produk, 0, ',', '.') }} jenis</td>
         <td>: {{ number_format($total_stok, 0, ',', '.') }} unit</td>
       </tr>
     </table>
@@ -175,37 +166,21 @@
   <table class="main-table">
     <thead>
       <tr>
-        <th width="4%">No</th>
+        <th width="5%">No</th>
         <th width="12%">Kode Barang</th>
         <th width="25%">Nama Barang</th>
         <th width="15%">Kategori</th>
         <th width="8%" class="text-center">Stok</th>
-        <th width="10%">Status Barang</th>
-        <th width="26%">Keterangan</th>
+        <th width="20%">Status (Kondisi)</th>
+        <th width="15%">Keterangan</th>
       </tr>
     </thead>
     <tbody>
       @forelse($products as $index => $product)
-      @php
-        // Tentukan badge status
-        $statusBadgeClass = 'status-bagus';
-        $statusText = 'BAGUS';
-
-        if (strtolower($product->status) == 'rusak') {
-          $statusBadgeClass = 'status-rusak';
-          $statusText = 'RUSAK';
-        } elseif (strtolower($product->status) == 'perbaikan') {
-          $statusBadgeClass = 'status-perbaikan';
-          $statusText = 'PERBAIKAN';
-        } elseif (strtolower($product->status) == 'habis') {
-          $statusBadgeClass = 'status-habis';
-          $statusText = 'HABIS';
-        }
-      @endphp
       <tr>
-        <td>{{ $index + 1 }}</td>
+        <td class="text-center">{{ $index + 1 }}</td>
         <td>
-          <div class="kode-barang">{{ $product->kode ?? 'TANPA KODE' }}</div>
+          <span class="kode-barang">{{ $product->kode ?? '-' }}</span>
         </td>
         <td>
           <strong>{{ $product->nama }}</strong>
@@ -216,27 +191,38 @@
           @endif
         </td>
         <td>{{ $product->kategori }}</td>
-        <td style="text-align: center;">
-          <div style="font-size:14px; font-weight:bold; color:#1C2B1A;">
-            {{ $product->stok }}
-          </div>
+        <td class="text-center">
+          <strong>{{ $product->stok }}</strong>
         </td>
-        <td>
-          <span class="status-badge {{ $statusBadgeClass }}">
-            {{ $statusText }}
-          </span>
+        <td class="status-detail">
+          <!-- MENAMPILKAN DETAIL KONDISI BARANG -->
+          @if($product->stok_bagus > 0)
+            <div class="status-bagus">
+              <strong>Bagus:</strong> {{ $product->stok_bagus }}
+            </div>
+          @endif
+          @if($product->stok_kurang_bagus > 0)
+            <div class="status-kurang">
+              <strong>Kurang Bagus:</strong> {{ $product->stok_kurang_bagus }}
+            </div>
+          @endif
+          @if($product->stok == 0)
+            <div style="color:#6b7280; font-style:italic;">
+              Tidak ada stok
+            </div>
+          @endif
         </td>
         <td>
           @if($product->keterangan)
-            {{ Str::limit($product->keterangan, 50) }}
+            {{ Str::limit($product->keterangan, 40) }}
           @else
-            <span style="color:#9ca3af; font-style:italic;">Barang yang tersedia di inventaris</span>
+            <span style="color:#9ca3af; font-style:italic;">-</span>
           @endif
         </td>
       </tr>
       @empty
       <tr>
-        <td colspan="7" style="text-align: center; padding: 20px; color: #666;">
+        <td colspan="7" class="text-center" style="padding: 20px; color: #666;">
           Tidak ada data barang
         </td>
       </tr>
@@ -246,7 +232,7 @@
 
   <!-- Footer / Signature -->
   <div class="footer">
-    <table width="100%" style="border: 0; text-align: center;">
+    <table width="100%" style="border: 0; text-align: center; margin-top: 60px;">
       <tr>
         <td width="50%">
           <p>Mengetahui,</p>
@@ -260,6 +246,7 @@
         </td>
       </tr>
     </table>
+  </div>
 
 </body>
 </html>

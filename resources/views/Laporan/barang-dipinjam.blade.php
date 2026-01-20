@@ -143,12 +143,10 @@
       <tr>
         <td width="33%"><strong>Total Transaksi Peminjaman</strong></td>
         <td width="34%"><strong>Total Barang Dipinjam</strong></td>
-        <td width="33%"><strong>Barang yang Dihapus</strong></td>
       </tr>
       <tr>
         <td>: {{ number_format($total_transaksi, 0, ',', '.') }} transaksi</td>
         <td>: {{ number_format($total_dipinjam, 0, ',', '.') }} unit</td>
-        <td>: {{ $deleted_count }} produk</td>
       </tr>
     </table>
   </div>

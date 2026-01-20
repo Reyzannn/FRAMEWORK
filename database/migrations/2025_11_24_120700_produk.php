@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('kode')->unique();
             $table->enum('kategori', ['Elektronik', 'Alat Tulis', 'Alat Mandi', 'Jajan', 'Alas Kaki', 'Kecantikan', 'Alat Dapur']);
             $table->integer('stok');
-            $table->enum('status', ['Bagus', 'Kurang Bagus'])->default('Bagus');
+            $table->integer('stok_bagus')->default(0);
+            $table->integer('stok_kurang_bagus')->default(0);
+            $table->string('status_summary')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
